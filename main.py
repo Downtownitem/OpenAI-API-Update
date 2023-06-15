@@ -4,6 +4,8 @@ import dotenv
 import json
 from colorama import Fore, Style
 
+import function_execution
+
 dotenv.load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 extra_comments = False
@@ -120,9 +122,11 @@ while True:
 
             actual_function_arguments = json.loads(actual_function_arguments)
 
-            # Function Execution - CHANGE FOR EACH FUNCTION
+            # TODO: Function Execution - CHANGE FOR EACH FUNCTION
             if actual_function_name == "get_course_info":
-                result = "{'teacher': 'Juan Perez'}"
+                nrc = actual_function_arguments["nrc"]
+                request = actual_function_arguments["request"]
+                result = function_execution.get_course_info(nrc, request)
             else:
                 result = "{'error': 'Function not found'}"
 
