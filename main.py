@@ -51,7 +51,7 @@ functions = [
 ]
 
 while True:
-    text_input = input("You: ")
+    text_input = input(f"{Fore.GREEN}You: {Style.RESET_ALL}")
 
     if text_input == "exit":
         break
@@ -78,6 +78,7 @@ while True:
         actual_function_name = ""
         actual_function_arguments = ""
 
+        print(f'{Fore.MAGENTA}Assistant: {Style.RESET_ALL}', end='')
         for message in response:
             # Function call
             if "function_call" in message["choices"][0]["delta"]:
